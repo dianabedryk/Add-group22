@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
 import unittest
 
 class AddContact(unittest.TestCase):
@@ -12,10 +13,12 @@ class AddContact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_add_new(wd)
-        self.fill_add_address_book_entry(wd)
+        self.fill_add_address_book_entry(wd, firstname="dfg", middlename="kmn", lastname="yhj", nickname="rgi", title="olk", company="tyj", address="iolkn", home="tyhk", mobile="fgbnm", work="rtjl",
+                                         fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,", homepage="tyhklm")
         self.submit_add_address_book_entry(wd)
         self.return_to_home_page(wd)
         self.logout(wd)
+
 
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
@@ -26,9 +29,8 @@ class AddContact(unittest.TestCase):
     def submit_add_address_book_entry(self, wd):
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def fill_add_address_book_entry(self, wd, firstname="dfg", middlename="kmn", nickname="rgi", company="tyj",
-                                    home="tyhk", work="rtjl", email="tyjkm", email2="tyhbnmk", email3="yujkl,",
-                                    homepage="tyhklm"):
+    def fill_add_address_book_entry(self, wd, firstname, middlename, lastname, nickname, title, company, address, home,
+                                    mobile, work, fax, email, email2, email3, homepage):
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(firstname)
@@ -75,15 +77,19 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("homepage").clear()
         wd.find_element_by_name("homepage").send_keys(homepage)
         wd.find_element_by_name("bday").click()
+        Select(wd.find_element_by_name("bday")).select_by_visible_text("15")
         wd.find_element_by_xpath("//option[@value='15']").click()
         wd.find_element_by_name("bmonth").click()
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text("March")
         wd.find_element_by_xpath("//option[@value='March']").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys("1980")
         wd.find_element_by_name("aday").click()
+        Select(wd.find_element_by_name("aday")).select_by_visible_text("14")
         wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[16]").click()
         wd.find_element_by_name("amonth").click()
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text("August")
         wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[9]").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
