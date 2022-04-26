@@ -13,11 +13,24 @@ class AddContact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_add_new(wd)
-        self.fill_add_address_book_entry(wd, firstname="dfg", middlename="kmn", lastname="yhj", nickname="rgi", title="olk", company="tyj", address="iolkn", home="tyhk", mobile="fgbnm", work="rtjl",
-                                         fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,", homepage="tyhklm")
+        self.fill_add_address_book_entry(wd, firstname="dfg", middlename="kmn", lastname="yhj",
+                                         nickname="rgi", title="olk", company="tyj", address="iolkn", home="tyhk", mobile="fgbnm",
+                                         work="rtjl", fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,", homepage="tyhklm")
         self.submit_add_address_book_entry(wd)
         self.return_to_home_page(wd)
         self.logout(wd)
+
+    def test_add_empty_contact(self):
+            wd = self.wd
+            self.open_home_page(wd)
+            self.login(wd, username="admin", password="secret")
+            self.open_add_new(wd)
+            self.fill_add_address_book_entry(wd, firstname="dfg", middlename="kmn", lastname="yhj",
+                                             nickname="rgi", title="olk", company="tyj", address="iolkn", home="tyhk",mobile="fgbnm",
+                                             work="rtjl",fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,",homepage="tyhklm")
+            self.submit_add_address_book_entry(wd)
+            self.return_to_home_page(wd)
+            self.logout(wd)
 
 
     def logout(self, wd):
