@@ -13,9 +13,12 @@ class AddContact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_add_new(wd)
-        self.fill_add_address_book_entry(wd, firstname="dfg", middlename="kmn", lastname="yhj",
-                                         nickname="rgi", title="olk", company="tyj", address="iolkn", home="tyhk", mobile="fgbnm",
-                                         work="rtjl", fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,", homepage="tyhklm")
+        self.fill_add_address_book_entry(wd, firstname="dfg", middlename="kmn", lastname="yhj", nickname="rgi",
+                                         title="olk", company="tyj", address="iolkn", home="tyhk", mobile="fgbnm",
+                                         work="rtjl", fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,",
+                                         homepage="tyhklm", bday="15", bmonth="March", byear="1980", aday="14",
+                                         amonth="August", ayear="2010", address2="thjmb", phone2="tyjmn",
+                                         notes="cvbnyt")
         self.submit_add_address_book_entry(wd)
         self.return_to_home_page(wd)
         self.logout(wd)
@@ -25,9 +28,12 @@ class AddContact(unittest.TestCase):
             self.open_home_page(wd)
             self.login(wd, username="admin", password="secret")
             self.open_add_new(wd)
-            self.fill_add_address_book_entry(wd, firstname="dfg", middlename="kmn", lastname="yhj",
-                                             nickname="rgi", title="olk", company="tyj", address="iolkn", home="tyhk",mobile="fgbnm",
-                                             work="rtjl",fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,",homepage="tyhklm")
+            self.fill_add_address_book_entry(wd, firstname="", middlename="", lastname="", nickname="", title="",
+                                             company="", address="", home="", mobile="", work="",
+                                             fax="", email="", email2="", email3="",
+                                             homepage="", bday="", bmonth="-", byear="", aday="",
+                                             amonth="-", ayear="", address2="", phone2="",
+                                             notes="")
             self.submit_add_address_book_entry(wd)
             self.return_to_home_page(wd)
             self.logout(wd)
@@ -43,7 +49,8 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def fill_add_address_book_entry(self, wd, firstname, middlename, lastname, nickname, title, company, address, home,
-                                    mobile, work, fax, email, email2, email3, homepage):
+                                    mobile, work, fax, email, email2, email3, homepage, bday, bmonth, byear, aday,
+                                    amonth, ayear, address2, phone2, notes):
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(firstname)
@@ -90,32 +97,28 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("homepage").clear()
         wd.find_element_by_name("homepage").send_keys(homepage)
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text("15")
-        wd.find_element_by_xpath("//option[@value='15']").click()
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(bday)
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text("March")
-        wd.find_element_by_xpath("//option[@value='March']").click()
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(bmonth)
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys("1980")
+        wd.find_element_by_name("byear").send_keys(byear)
         wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text("14")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[16]").click()
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(aday)
         wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text("August")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[9]").click()
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(amonth)
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys("2010")
+        wd.find_element_by_name("ayear").send_keys(ayear)
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys("thjmb")
+        wd.find_element_by_name("address2").send_keys(address2)
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys("tyjmn")
+        wd.find_element_by_name("phone2").send_keys(phone2)
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys("cvbnyt")
+        wd.find_element_by_name("notes").send_keys(notes)
 
     def open_add_new(self, wd):
         wd.find_element_by_link_text("add new").click()
