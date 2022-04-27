@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from selenium import webdriver
-import unittest
 import pytest
 from group import Group
 from application import Application
@@ -12,16 +10,14 @@ def app(request):
     return fixture
 
 
-def test_add_group11(self):
-    self.app.login(username="admin", password="secret")
-    self.app.group_creation(Group(name="gfuy", header="ihhn", footer="fgh"))
-    self.app.logout()
+def test_add_group11(app):
+    app.app.login(username="admin", password="secret")
+    app.app.group_creation(Group(name="gfuy", header="ihhn", footer="fgh"))
+    app.app.logout()
 
-def test_add_empty_group11(self):
-    self.app.login(username="admin", password="secret")
-    self.app.group_creation(Group(name="", header="", footer=""))
-    self.app.logout()
+def test_add_empty_group11(app):
+    app.app.login(username="admin", password="secret")
+    app.app.group_creation(Group(name="", header="", footer=""))
+    app.app.logout()
 
 
-if __name__ == "__main__":
-    unittest.main()
