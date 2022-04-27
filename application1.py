@@ -2,26 +2,32 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
 class Application1:
+
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def logout(self):
+    def open_home_page(self):
         wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
+        wd.get("http://localhost/addressbook/")
 
-    def return_to_home_page(self):
-        wd = self.wd
-        self.return_to_home_page()
-        wd.find_element_by_link_text("home page").click()
 
-    def submit_add_address_book_entry(self):
+    def login(self, username, password):
         wd = self.wd
-        self.submit_add_address_book_entry()
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.open_home_page()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys(username)
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys(password)
+        wd.find_element_by_xpath("//input[@value='Login']").click()
+
+    def open_add_new(self):
+        wd = self.wd
+        wd.find_element_by_link_text("add new").click()
 
     def fill_add_address_book_entry(self, contact):
         wd = self.wd
+        self.open_add_new()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -91,23 +97,19 @@ class Application1:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
 
-    def open_add_new(self):
+    def submit_add_address_book_entry(self):
         wd = self.wd
-        self.open_add_new()
-        wd.find_element_by_link_text("add new").click()
+        self.submit_add_address_book_entry()
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def login(self, username, password):
+    def return_to_home_page(self):
         wd = self.wd
-        self.open_home_page()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
+        self.return_to_home_page()
+        wd.find_element_by_link_text("home page").click()
 
-    def open_home_page(self):
+    def logout(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
+        wd.find_element_by_link_text("Logout").click()
 
     def destroy(self):
         self.wd.quit()
