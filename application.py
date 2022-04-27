@@ -7,9 +7,6 @@ class Application:
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def destroy(self):
-        self.wd.quit()
-
     def logout(self):
         wd = self.wd
         wd.find_element_by_link_text("Logout").click()
@@ -53,3 +50,6 @@ class Application:
     def open_home_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
+
+    def destroy(self):
+        self.wd.quit()
