@@ -15,10 +15,10 @@ class AddContact(unittest.TestCase):
         self.login(wd, username="admin", password="secret")
         self.open_add_new(wd)
         self.fill_add_address_book_entry(wd, Contact(firstname="dfg", middlename="kmn", lastname="yhj", nickname="rgi",
-                                         title="olk", company="tyj", address="iolkn", home="tyhk", mobile="fgbnm",
-                                         work="rtjl", fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,",
+                                         title="olk", company="tyj", address="iolkn", home_phone="tyhk", mobile_phone="fgbnm",
+                                         work_phone="rtjl", fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,",
                                          homepage="tyhklm", bday="15", bmonth="March", byear="1980", aday="14",
-                                         amonth="August", ayear="2010", address2="thjmb", phone2="tyjmn",
+                                         amonth="August", ayear="2010", address2="thjmb", home_phone2="tyjmn",
                                          notes="cvbnyt"))
         self.submit_add_address_book_entry(wd)
         self.return_to_home_page(wd)
@@ -30,10 +30,10 @@ class AddContact(unittest.TestCase):
             self.login(wd, username="admin", password="secret")
             self.open_add_new(wd)
             self.fill_add_address_book_entry(wd, Contact(firstname="", middlename="", lastname="", nickname="", title="",
-                                             company="", address="", home="", mobile="", work="",
+                                             company="", address="", home_phone="", mobile_phone="", work_phone="",
                                              fax="", email="", email2="", email3="",
                                              homepage="", bday="", bmonth="-", byear="", aday="",
-                                             amonth="-", ayear="", address2="", phone2="",
+                                             amonth="-", ayear="", address2="", home_phone2="",
                                              notes=""))
             self.submit_add_address_book_entry(wd)
             self.return_to_home_page(wd)
@@ -73,13 +73,13 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("address").send_keys(contact.address)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contact.home)
+        wd.find_element_by_name("home").send_keys(contact.home_phone)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(contact.mobile)
+        wd.find_element_by_name("mobile").send_keys(contact.mobile_phone)
         wd.find_element_by_name("work").click()
         wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(contact.work)
+        wd.find_element_by_name("work").send_keys(contact.work_phone)
         wd.find_element_by_name("fax").click()
         wd.find_element_by_name("fax").clear()
         wd.find_element_by_name("fax").send_keys(contact.fax)
@@ -114,7 +114,7 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("address2").send_keys(contact.address2)
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys(contact.phone2)
+        wd.find_element_by_name("phone2").send_keys(contact.home_phone2)
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
