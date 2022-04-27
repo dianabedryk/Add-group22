@@ -10,31 +10,23 @@ class AddContact(unittest.TestCase):
         self.wd.implicitly_wait(30)
 
     def test_add_contact(self):
-        self.open_home_page()
         self.login(username="admin", password="secret")
-        self.open_add_new()
         self.fill_add_address_book_entry(Contact(firstname="dfg", middlename="kmn", lastname="yhj", nickname="rgi",
                                          title="olk", company="tyj", address="iolkn", home_phone="tyhk", mobile_phone="fgbnm",
                                          work_phone="rtjl", fax="vgythk", email="tyjkm", email2="tyhbnmk", email3="yujkl,",
                                          homepage="tyhklm", bday="15", bmonth="March", byear="1980", aday="14",
                                          amonth="August", ayear="2010", address2="thjmb", home_phone2="tyjmn",
                                          notes="cvbnyt"))
-        self.submit_add_address_book_entry()
-        self.return_to_home_page()
         self.logout()
 
     def test_add_empty_contact(self):
-            self.open_home_page()
             self.login(username="admin", password="secret")
-            self.open_add_new()
             self.fill_add_address_book_entry(Contact(firstname="", middlename="", lastname="", nickname="", title="",
                                              company="", address="", home_phone="", mobile_phone="", work_phone="",
                                              fax="", email="", email2="", email3="",
                                              homepage="", bday="", bmonth="-", byear="", aday="",
                                              amonth="-", ayear="", address2="", home_phone2="",
                                              notes=""))
-            self.submit_add_address_book_entry()
-            self.return_to_home_page()
             self.logout()
 
 
@@ -44,10 +36,12 @@ class AddContact(unittest.TestCase):
 
     def return_to_home_page(self):
         wd = self.wd
+        self.return_to_home_page()
         wd.find_element_by_link_text("home page").click()
 
     def submit_add_address_book_entry(self):
         wd = self.wd
+        self.submit_add_address_book_entry()
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def fill_add_address_book_entry(self, contact):
@@ -123,10 +117,12 @@ class AddContact(unittest.TestCase):
 
     def open_add_new(self):
         wd = self.wd
+        self.open_add_new()
         wd.find_element_by_link_text("add new").click()
 
     def login(self, username, password):
         wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").clear()
