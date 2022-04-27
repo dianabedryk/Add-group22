@@ -11,7 +11,6 @@ class Application1:
         wd = self.wd
         wd.get("http://localhost/addressbook/")
 
-
     def login(self, username, password):
         wd = self.wd
         self.open_home_page()

@@ -32,6 +32,3 @@ def test_add_empty_contact(app):
                                              notes=""))
         app.logout()
 
-
-
-
