@@ -1,15 +1,13 @@
-from fixture.manager import Manager_contactHelper
-from fixture.manager import Manager_groupHelper
+from fixture.manager import ManagerHelper
 
-class Session_groupHelper:
+
+class SessionHelper:
 
     def __init__(self, app):
         self.app = app
-        self.manager_group = Manager_groupHelper(self)
+        self.manager = ManagerHelper(self)
 
 
-class Session_contactHelper:
-    def __init__(self, app):
-        self.app = app
-        self.manager_contact = Manager_contactHelper(self)
+
+
 
