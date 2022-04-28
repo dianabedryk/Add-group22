@@ -1,37 +1,15 @@
+from fixture.manager import Manager_contactHelper
+from fixture.manager import Manager_groupHelper
 
 class Session_groupHelper:
+
     def __init__(self, app):
         self.app = app
-
-
-    def login(self, username, password):
-        wd = self.app.wd
-        self.app.open_home_page()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-
-
-    def logout(self):
-        wd = self.app.wd
-        wd.find_element_by_link_text("Logout").click()
+        self.manager_group = Manager_groupHelper(self)
 
 
 class Session_contactHelper:
     def __init__(self, app):
         self.app = app
+        self.manager_contact = Manager_contactHelper(self)
 
-    def login(self, username, password):
-        wd = self.app.wd
-        self.app.open_home_page()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-
-    def logout(self):
-        wd = self.app.wd
-        wd.find_element_by_link_text("Logout").click()

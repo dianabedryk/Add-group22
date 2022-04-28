@@ -1,6 +1,8 @@
 from selenium import webdriver
 from fixture.session import Session_groupHelper
 from fixture.group import Group_groupHelper
+from fixture.manager import Manager_groupHelper
+
 
 class Application:
 
@@ -9,6 +11,8 @@ class Application:
         self.wd.implicitly_wait(30)
         self.session_group = Session_groupHelper(self)
         self.group_group = Group_groupHelper(self)
+        self.manager_group = Manager_groupHelper(self)
+
 
     def open_home_page(self):
         wd = self.wd
