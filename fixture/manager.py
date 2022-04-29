@@ -53,6 +53,29 @@ class ManagerHelper:
         wd.find_element_by_name("delete").click()
         self.return_to_group_page()
 
+    def edit_first_group(self, edit_group):
+        wd = self.app.wd
+        self.open_groups_page()
+        # select first group
+        wd.find_element_by_name("selected[]").click()
+        # submit edition
+        wd.find_element_by_name("edit").click()
+        #edit
+        wd.find_element_by_name("group_name").click()
+        wd.find_element_by_name("group_name").clear()
+        wd.find_element_by_name("group_name").send_keys(edit_group.name)
+        wd.find_element_by_name("group_header").click()
+        wd.find_element_by_name("group_header").clear()
+        wd.find_element_by_name("group_header").send_keys(edit_group.header)
+        wd.find_element_by_name("group_footer").click()
+        wd.find_element_by_name("group_footer").clear()
+        wd.find_element_by_name("group_footer").send_keys(edit_group.footer)
+        self.submit_edit(wd)
+        self.return_to_group_page()
+
+    def submit_edit(self, wd):
+        wd.find_element_by_name("update").click()
+
     def return_to_group_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
@@ -60,6 +83,7 @@ class ManagerHelper:
     def open_add_new(self):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
+
 
     def fill_add_address_book_entry(self, contact):
         wd = self.app.wd
@@ -132,6 +156,7 @@ class ManagerHelper:
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
+        wd.find_element_by_name("notes").clear()
 
     def submit_add_address_book_entry(self):
         wd = self.app.wd
