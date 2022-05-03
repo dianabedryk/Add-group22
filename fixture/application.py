@@ -9,6 +9,8 @@ class Application:
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
+        self.verificationErrors = []
+        self.accept_next_alert = True
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.manager = ManagerHelper(self)
