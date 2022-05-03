@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from model.contact import Contact
 
 
@@ -23,4 +24,3 @@ def test_add_empty_contact(app):
                                              amonth="-", ayear="", address2="", home_phone2="",
                                              notes=""))
     app.manager.logout()
-
