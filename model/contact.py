@@ -28,5 +28,16 @@ class Contact:
         self.home_phone2 = home_phone2
         self.notes = notes
 
-
+class Edit_contact:
+    def __init__(self, first_name, middle_name, last_name, nickname, address, home_phone, mobil_phone, email2,
+                           address2):
+        self.first_name = first_name
+        self.middle_name = middle_name
+        self.last_name = last_name
+        self.nickname = nickname
+        self.address = address
+        self.home_phone = home_phone
+        self.mobil_phone = mobil_phone
+        self.email2 = email2
+        self.address2 = address2
 

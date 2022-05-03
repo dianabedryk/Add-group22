@@ -1,5 +1,5 @@
 
 def test_delete_first_group(app):
-    app.manager.login(username="admin", password="secret")
-    app.manager.delete_first_group()
-    app.manager.logout()
+    app.manager_group.login(username="admin", password="secret")
+    app.manager_group.delete_first_group()
+    app.manager_group.logout()

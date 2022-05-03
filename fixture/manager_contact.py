@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
 
-class ManagerHelper:
+class Manager_contactHelper:
 
     def __init__(self, app):
         self.app = app
@@ -21,65 +21,6 @@ class ManagerHelper:
         wd = self.app.wd
         wd.find_element(by=By.LINK_TEXT, value="Logout").click()
         wd.find_element(by=By.NAME, value="user")
-
-    def open_groups_page(self):
-        wd = self.app.wd
-        wd.find_element_by_link_text("groups").click()
-
-    def create(self, group):
-        wd = self.app.wd
-        self.open_groups_page()
-        # init group creation
-        wd.find_element_by_name("new").click()
-        # fill group form
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(group.name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(group.header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(group.footer)
-        # submit group creation
-        wd.find_element_by_name("submit").click()
-        self.return_to_group_page()
-
-    def delete_first_group(self):
-        wd = self.app.wd
-        self.open_groups_page()
-        # select first group
-        wd.find_element_by_name("selected[]").click()
-        # submit deletion
-        wd.find_element_by_name("delete").click()
-        self.return_to_group_page()
-
-    def edit_first_group(self, edit_group):
-        wd = self.app.wd
-        self.open_groups_page()
-        # select first group
-        wd.find_element_by_name("selected[]").click()
-        # start edition
-        wd.find_element_by_name("edit").click()
-        # edit
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(edit_group.name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(edit_group.header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(edit_group.footer)
-        self.submit_edit(wd)
-        self.return_to_group_page()
-
-    def submit_edit(self, wd):
-        wd.find_element_by_name("update").click()
-
-    def return_to_group_page(self):
-        wd = self.app.wd
-        wd.find_element_by_link_text("group page").click()
 
     def open_add_new(self):
         wd = self.app.wd
@@ -170,3 +111,35 @@ class ManagerHelper:
         self.accept_next_alert = True
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
+
+    def edit_first_contact(self, edit_contact):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(edit_contact.first_name)
+        wd.find_element_by_name("middlename").click()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("middlename").send_keys(edit_contact.middle_name)
+        wd.find_element_by_name("lastname").click()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(edit_contact.last_name)
+        wd.find_element_by_name("nickname").click()
+        wd.find_element_by_name("nickname").clear()
+        wd.find_element_by_name("nickname").send_keys(edit_contact.nickname)
+        wd.find_element_by_name("address").click()
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(edit_contact.address)
+        wd.find_element_by_name("home").click()
+        wd.find_element_by_name("home").clear()
+        wd.find_element_by_name("home").send_keys(edit_contact.home_phone)
+        wd.find_element_by_name("mobile").click()
+        wd.find_element_by_name("mobile").clear()
+        wd.find_element_by_name("mobile").send_keys(edit_contact.mobil_phone)
+        wd.find_element_by_name("email2").click()
+        wd.find_element_by_name("email2").clear()
+        wd.find_element_by_name("email2").send_keys(edit_contact.email2)
+        wd.find_element_by_name("address2").click()
+        wd.find_element_by_name("address2").clear()
+        wd.find_element_by_name("address2").send_keys(edit_contact.address2)
+        wd.find_element_by_name("update").click()

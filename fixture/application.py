@@ -1,7 +1,8 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
-from fixture.manager import ManagerHelper
+from fixture.manager_contact import Manager_contactHelper
+from fixture.manager_group import Manager_groupHelper
 
 
 class Application:
@@ -13,7 +14,8 @@ class Application:
         self.accept_next_alert = True
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
-        self.manager = ManagerHelper(self)
+        self.manager_contact = Manager_contactHelper(self)
+        self.manager_group = Manager_groupHelper(self)
 
 
     def open_home_page(self):

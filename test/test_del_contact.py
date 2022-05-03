@@ -1,5 +1,5 @@
 
-def test_del_contact(app):
-    app.manager.login(username="admin", password="secret")
-    app.manager.delete_first_contact()
-    app.manager.logout()
+def test_delete_first_contact(app):
+    app.manager_contact.login(username="admin", password="secret")
+    app.manager_contact.delete_first_contact()
+    app.manager_contact.logout()
