@@ -12,7 +12,6 @@ def test_add_contact(app):
                                          amonth="August", ayear="2010", address2="thjmb", home_phone2="tyjmn",
                                          notes="cvbnyt"))
 
-
 def test_add_empty_contact(app):
     app.manager_contact.fill_add_address_book_entry(Contact(firstname="", middlename="", lastname="", nickname="", title="",
                                              company="", address="", home_phone="", mobile_phone="", work_phone="",

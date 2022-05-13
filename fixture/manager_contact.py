@@ -104,6 +104,7 @@ class Manager_contactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        wd.get("http://localhost/addressbook/")
         # select first group
         wd.find_element_by_name("selected[]").click()
         # submit deletion
@@ -113,6 +114,7 @@ class Manager_contactHelper:
 
     def modify_first_contact_name(self, new_contact_data):
         wd = self.app.wd
+        wd.get("http://localhost/addressbook/")
         self.open_modification_form()
         self.fill_modificate_contact_form(new_contact_data)
         self.submit_modification()
@@ -121,6 +123,7 @@ class Manager_contactHelper:
 
     def edit_first_contact(self, edit_contact):
         wd = self.app.wd
+        wd.get("http://localhost/addressbook/")
         self.open_modification_form()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -158,3 +161,28 @@ class Manager_contactHelper:
     def submit_modification(self):
         wd = self.app.wd
         wd.find_element_by_name("update").click()
+
+    def ensure_logout(self):
+        wd = self.app.wd
+        if self.is_logged_in():
+            self.logout()
+
+    def is_logged_in(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_link_text("Logout")) > 0
+
+    def is_logged_in_as(self, username):
+        wd = self.app.wd
+        return wd.find_element_by_xpath("//div/div[1]/form/b").text == "("+username+")"
+
+    def ensure_login(self, username, password):
+        wd = self.app.wd
+        if self.is_logged_in():
+            if self.is_logged_in_as(username):
+                return
+            else:
+                self.logout()
+        self.login(username, password)
+
+
+
