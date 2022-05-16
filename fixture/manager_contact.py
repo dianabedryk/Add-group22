@@ -49,42 +49,11 @@ class Manager_contactHelper:
         self.change_firstname_value("email2", contact.email2)
         self.change_firstname_value("email3", contact.email3)
         self.change_firstname_value("homepage", contact.firstname)
-        wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.aday)
-        wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
+        self.change_day_value("bday", contact.bday)
+        self.change_day_value("bmonth", contact.bmonth)
         self.change_firstname_value("byear", contact.byear)
-        wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.aday)
-        wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.amonth)
-        self.change_firstname_value("ayear", contact.ayear)
-        self.change_firstname_value("address2", contact.address2)
-        self.change_firstname_value("phone2", contact.home_phone2)
-        self.change_firstname_value("notes", contact.notes)
-
-    def fill_modificate_contact_form(self, contact):
-        wd = self.app.wd
-        self.change_firstname_value("firstname", contact.firstname)
-        self.change_firstname_value("middlename", contact.middlename)
-        self.change_firstname_value("lastname", contact.lastname)
-        self.change_firstname_value("nickname", contact.nickname)
-        self.change_firstname_value("title", contact.title)
-        self.change_firstname_value("company", contact.company)
-        self.change_firstname_value("address", contact.address)
-        self.change_firstname_value("home", contact.home_phone)
-        self.change_firstname_value("mobile", contact.mobile_phone)
-        self.change_firstname_value("work", contact.work_phone)
-        self.change_firstname_value("fax", contact.fax)
-        self.change_firstname_value("email", contact.email)
-        self.change_firstname_value("email2", contact.email2)
-        self.change_firstname_value("email3", contact.email3)
-        self.change_firstname_value("homepage", contact.homepage)
-        self.change_firstname_value("bday", contact.bday)
-        self.change_firstname_value("bmonth", contact.bmonth)
-        self.change_firstname_value("byear", contact.byear)
-        self.change_firstname_value("aday", contact.aday)
-        self.change_firstname_value("amonth", contact.amonth)
+        self.change_day_value("aday", contact.aday)
+        self.change_day_value("amonth", contact.amonth)
         self.change_firstname_value("ayear", contact.ayear)
         self.change_firstname_value("address2", contact.address2)
         self.change_firstname_value("phone2", contact.home_phone2)
@@ -97,6 +66,13 @@ class Manager_contactHelper:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
+
+
+    def change_day_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            Select(wd.find_element_by_name(field_name)).select_by_visible_text(text)
 
     def submit_add_address_book_entry(self):
         wd = self.app.wd
@@ -116,9 +92,8 @@ class Manager_contactHelper:
         wd = self.app.wd
         wd.get("http://localhost/addressbook/")
         self.open_modification_form()
-        self.fill_modificate_contact_form(new_contact_data)
+        self.fill_contact_form(new_contact_data)
         self.submit_modification()
-
 
 
     def edit_first_contact(self, edit_contact):

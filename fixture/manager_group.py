@@ -71,16 +71,7 @@ class Manager_groupHelper:
         self.select_first_group()
         # open modification form
         wd.find_element_by_name("edit").click()
-        # edit
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(edit_group.name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(edit_group.header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(edit_group.footer)
+        self.fill_group_form(edit_group)
         self.submit_edit()
         self.return_to_group_page()
 

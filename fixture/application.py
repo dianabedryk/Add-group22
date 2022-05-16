@@ -3,8 +3,7 @@ from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.manager_contact import Manager_contactHelper
 from fixture.manager_group import Manager_groupHelper
-from fixture.edit import EditHelper
-from fixture.delete import DeleteHelper
+
 
 
 class Application:
@@ -18,8 +17,6 @@ class Application:
         self.group = GroupHelper(self)
         self.manager_contact = Manager_contactHelper(self)
         self.manager_group = Manager_groupHelper(self)
-        self.edit = EditHelper(self)
-        self.delete = DeleteHelper(self)
 
 
     def is_valid(self):
