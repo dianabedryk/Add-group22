@@ -26,7 +26,7 @@ class Manager_contactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
-    def fill_add_address_book_entry(self, contact):
+    def create(self, contact):
         wd = self.app.wd
         self.open_add_new()
         self.fill_contact_form(contact)
@@ -160,4 +160,6 @@ class Manager_contactHelper:
         self.login(username, password)
 
 
-
+    def count(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_name("selected[]"))
