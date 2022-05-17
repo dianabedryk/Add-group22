@@ -1,6 +1,7 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from model.contact import Contact
 
 
 class Manager_contactHelper:
@@ -19,8 +20,8 @@ class Manager_contactHelper:
 
     def logout(self):
         wd = self.app.wd
-        wd.find_element(by=By.LINK_TEXT, value="Logout").click()
-        wd.find_element(by=By.NAME, value="user")
+        wd = self.app.wd
+        wd.find_element_by_link_text("Logout").click()
 
     def open_add_new(self):
         wd = self.app.wd
@@ -163,3 +164,16 @@ class Manager_contactHelper:
     def count(self):
         wd = self.app.wd
         return len(wd.find_elements_by_name("selected[]"))
+
+
+    def get_group_list(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        contacts = []
+        for element in wd.find_elements_by_name("entry"):
+            text = element.text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            contacts.append(Contact(firstname=text, id=id))
+        return contacts
+
+

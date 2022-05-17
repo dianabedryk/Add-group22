@@ -1,5 +1,6 @@
 import username as username
 from selenium.webdriver.common.by import By
+from model.group import Group
 
 
 class Manager_groupHelper:
@@ -18,8 +19,9 @@ class Manager_groupHelper:
 
     def logout(self):
         wd = self.app.wd
-        wd.find_element(by=By.LINK_TEXT, value="Logout").click()
-        wd.find_element(by=By.NAME, value="user")
+        wd = self.app.wd
+        wd.find_element_by_link_text("Logout").click()
+
 
     def open_groups_page(self):
         wd = self.app.wd
@@ -134,3 +136,13 @@ class Manager_groupHelper:
         wd = self.app.wd
         self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_group_list(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        groups = []
+        for element in wd.find_elements_by_css_selector("span.group"):
+            text = element.text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            groups.append(Group(name=text, id=id))
+        return groups
