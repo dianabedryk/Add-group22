@@ -1,5 +1,4 @@
-import username as username
-from selenium.webdriver.common.by import By
+
 from model.group import Group
 
 
@@ -7,20 +6,6 @@ class Manager_groupHelper:
 
     def __init__(self, app):
         self.app = app
-
-    def login(self, username, password):
-        wd = self.app.wd
-        self.app.open_home_page()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-
-    def logout(self):
-        wd = self.app.wd
-        wd = self.app.wd
-        wd.find_element_by_link_text("Logout").click()
 
 
     def open_groups_page(self):
@@ -68,16 +53,6 @@ class Manager_groupHelper:
         wd.find_element_by_name("delete").click()
         self.return_to_group_page()
 
-    def edit_first_group(self, edit_group):
-        wd = self.app.wd
-        self.open_groups_page()
-        self.select_first_group()
-        # open modification form
-        wd.find_element_by_name("edit").click()
-        self.fill_group_form(edit_group)
-        self.submit_edit()
-        self.return_to_group_page()
-
     def select_first_group(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
@@ -109,28 +84,6 @@ class Manager_groupHelper:
     def return_to_group_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
-
-    def ensure_logout(self):
-        wd = self.app.wd
-        if self.is_logged_in():
-            self.logout()
-
-    def is_logged_in(self):
-        wd = self.app.wd
-        return len(wd.find_elements_by_link_text("Logout")) > 0
-
-    def is_logged_in_as(self, username):
-        wd = self.app.wd
-        return wd.find_element_by_xpath("//div/div[1]/form/b").text == "("+username+")"
-
-    def ensure_login(self, username, password):
-        wd = self.app.wd
-        if self.is_logged_in():
-            if self.is_logged_in_as(username):
-                return
-            else:
-                self.logout()
-        self.login(username, password)
 
     def count(self):
         wd = self.app.wd
