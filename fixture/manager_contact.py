@@ -76,10 +76,10 @@ class Manager_contactHelper:
 
     def modify_first_contact_name(self, new_contact_data):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/")
         self.open_modification_form()
         self.fill_contact_form(new_contact_data)
         self.submit_modification()
+        self.app.return_to_home_page()
 
     def open_modification_form(self):
         wd = self.app.wd
