@@ -26,7 +26,7 @@ class Manager_groupHelper:
     def fill_group_form(self, group):
         wd = self.app.wd
         self.change_field_name_value("group_name", group.name)
-        self.change_field_name_value("group_header", group.header)
+        self.change_field_header_value("group_header", group.header)
         self.change_field_name_value("group_footer", group.footer)
 
     def change_field_name_value(self, field_name, text):
@@ -37,12 +37,12 @@ class Manager_groupHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
 
-    def change_field_header_value(self, header_name, text):
+    def change_field_header_value(self, field_header, text):
         wd = self.app.wd
         if text is not None:
-            wd.find_element_by_name(header_name).click()
-            wd.find_element_by_name(header_name).clear()
-            wd.find_element_by_name(header_name).send_keys(text)
+            wd.find_element_by_name(field_header).click()
+            wd.find_element_by_name(field_header).clear()
+            wd.find_element_by_name(field_header).send_keys(text)
 
     def delete_first_group(self):
         wd = self.app.wd

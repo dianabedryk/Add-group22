@@ -22,7 +22,7 @@ class Manager_contactHelper:
         wd = self.app.wd
         self.change_firstname_value("firstname", contact.firstname)
         self.change_firstname_value("middlename", contact.middlename)
-        self.change_firstname_value("lastname", contact.lastname)
+        self.change_lastname_value("lastname", contact.lastname)
         self.change_firstname_value("nickname", contact.nickname)
         self.change_firstname_value("title", contact.title)
         self.change_firstname_value("company", contact.company)
@@ -46,12 +46,19 @@ class Manager_contactHelper:
         self.change_firstname_value("notes", contact.notes)
 
 
-    def change_firstname_value(self, field_name, text):
+    def change_firstname_value(self, field_firstname, text):
         wd = self.app.wd
         if text is not None:
-            wd.find_element_by_name(field_name).click()
-            wd.find_element_by_name(field_name).clear()
-            wd.find_element_by_name(field_name).send_keys(text)
+            wd.find_element_by_name(field_firstname).click()
+            wd.find_element_by_name(field_firstname).clear()
+            wd.find_element_by_name(field_firstname).send_keys(text)
+
+    def change_lastname_value(self, field_lastname, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_lastname).click()
+            wd.find_element_by_name(field_lastname).clear()
+            wd.find_element_by_name(field_lastname).send_keys(text)
 
 
     def change_day_value(self, field_name, text):
