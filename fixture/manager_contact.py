@@ -73,23 +73,43 @@ class Manager_contactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/")
+        self.app.open_home_page()
         # select first group
-        wd.find_element_by_name("selected[]").click()
+        self.select_contact_by_index(index)
         # submit deletion
         self.accept_next_alert = True
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
         self.contact_cache = None
 
-    def modify_first_contact_name(self, new_contact_data):
+    def select_first_contact(self):
         wd = self.app.wd
-        self.open_modification_form()
+        wd.find_element_by_name("selected[]").click()
+
+    def select_contact_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
+    def modify_first_contact_name(self):
+        self.modify_contact_by_index(0)
+
+
+    def modify_contact_by_index(self, index, new_contact_data):
+        wd = self.app.wd
+        self.open_modification_form_by_index(index)
         self.fill_contact_form(new_contact_data)
         self.submit_modification()
         self.app.return_to_home_page()
         self.contact_cache = None
+
+    def open_modification_form_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
 
     def open_modification_form(self):
         wd = self.app.wd
